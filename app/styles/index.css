@@ -2,6 +2,8 @@
     background: #f8f8f8;
     display: grid;
     grid-template-rows: 0.13fr 1fr;
+    width: 1280px;
+    height: auto;
 
 }
 

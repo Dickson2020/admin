@@ -5,14 +5,8 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { BarChart, Bar, Rectangle, Legend } from 'recharts';
 
 import ANALYTICS from './analytics';
-import OnGoingRIdesMap from './ongoing-rides';
 
-
-interface propsType{
-    showDriverDetails: (id: number)=> void,
-    hideDriverDetails: ()=> void
-}
-export default function RidersPage( prop : propsType) {
+export default function RidersPage() {
 
      const [analyticsData, setAnalyticsData] = useState(ANALYTICS().daysAnalytics)
      const [chooseAnalyticsView, setChooseAnalyticsView] = useState('days')

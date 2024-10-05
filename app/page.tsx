@@ -198,7 +198,7 @@ export default function Home() {
         break
       
       case 'riders':
-        setPAGE_COMPONENT(<RidersPage showDriverDetails={showDriverDetails} hideDriverDetails={hideDriverDetails}/>)
+        setPAGE_COMPONENT(<RidersPage />)
         break
 
         case 'transactions':

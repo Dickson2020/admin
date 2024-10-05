@@ -60,6 +60,7 @@ export default function Home() {
   const showDriverVerificationDetails = (id: number) =>{
     setDRIVER_VERIFICATION_DETAILS(true)
     hideReceiptDetails()
+    console.log(id)
   }
 
   

@@ -2,8 +2,6 @@ import './Home.css'
 
 import React, { useEffect, useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { BarChart, Bar, Rectangle, Legend } from 'recharts';
-
 import ANALYTICS from './analytics';
 import { FiArrowDownLeft } from 'react-icons/fi';
 
@@ -34,37 +32,7 @@ export default function TransactionsPage( prop : propsType) {
         }
      },[chooseAnalyticsView])
 
-     const trafficAnalytics = [
-        {
-          name: '6 am',
-          transactions: 4000,
-          profit: 2400,
-        },
-        {
-            name: '7 am',
-            transactions: 24000,
-            profit: 24500,
-        },
-        {
-            name: '8 am',
-            transactions: 443000,
-            profit: 24000,
-        },
-
-        {
-            name: '9 am',
-            transactions: 443000,
-            profit: 24000,
-        },
-        {
-            name: '10 am',
-            transactions: 443000,
-            profit: 24000,
-        },
-        
-        
-      ];
-
+     
 
 
     return (

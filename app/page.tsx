@@ -231,6 +231,9 @@ export default function Home() {
     
   }
 
+  const [isLogin, setIsLogin] = useState(false)
+
+
   const setLoginSession = ( id : number)=>{
      localStorage.setItem('session', id +'')
   }
@@ -238,11 +241,17 @@ export default function Home() {
   const getLoginSession = ()=>{
    const session =  localStorage.getItem('session')
    if(session !== null){
+    
     setIsLogin(true)
    }
   }
 
-  const onLoginSuccess =(id : number) =>{
+  const logout = () =>{
+    localStorage.removeItem('session')
+    setIsLogin(false)
+  }
+
+  const onLoginSuccess = (id : number) =>{
     setLoginSession(id)
     getLoginSession()
   }
@@ -250,7 +259,8 @@ export default function Home() {
    getLoginSession()
   },[])
 
-  const [isLogin, setIsLogin] = useState(false)
+
+
 
   return (
     isLogin?
@@ -272,18 +282,7 @@ export default function Home() {
           </div>
 
           <div className='header-action-icons'>
-            <div className='c-mt' onClick={() => setMESSAGES_MODAL(!MESSAGES_MODAL)}>
-              {
-                MESSAGES_MODAL ?
-                  <BsEnvelopeAtFill size={19} color='#000' className='noty-message-icon' />
-                  :
-                  <BsEnvelopeAt size={19} color='#000' className='noty-message-icon' />
-
-              }
-              <div className='noty-indicator'>2</div>
-
-
-            </div>
+           
 
             <div className='c-mt' onClick={() => setNOTY_MODAL(!NOTY_MODAL)}>
               {
@@ -300,7 +299,7 @@ export default function Home() {
 
             <div className='profile-pic-centralize'>
 
-              <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='header-profile-image' />
+              <img src='https://th.bing.com/th/id/OIP.Q6UzOWk9FXLJoQN8o5yl5gAAAA?rs=1&pid=ImgDetMain' className='header-profile-image' />
             </div>
           </div>
 
@@ -410,7 +409,7 @@ export default function Home() {
             <div className='popup-modal-content-body'>
               <div className='profile-bio-section'>
                 <div className='c-item'>
-                  <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='profile-bio-section-img' />
+                  <img src='https://th.bing.com/th/id/OIP.Q6UzOWk9FXLJoQN8o5yl5gAAAA?rs=1&pid=ImgDetMain' className='profile-bio-section-img' />
                   <MdVerified className='verified-driver-details' />
                 </div>
                 <div>
@@ -543,7 +542,7 @@ export default function Home() {
             <div className='popup-modal-content-body'>
               <div className='profile-bio-section'>
                 <div className='c-item'>
-                  <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='profile-bio-section-img' />
+                  <img src='https://th.bing.com/th/id/OIP.Q6UzOWk9FXLJoQN8o5yl5gAAAA?rs=1&pid=ImgDetMain' className='profile-bio-section-img' />
                 </div>
                 <div>
                   <p className='text-color profile-bio-section-name'>Morrisa R. Williams</p>
@@ -632,7 +631,7 @@ export default function Home() {
         </div>
       </div>
       <div className='container-body' onClick={() => closeAllModal()}>
-        <Navigation navOnPress={navOnPress} />
+        <Navigation logout={logout} navOnPress={navOnPress} />
         <div className='main-container-body'>
         {PAGE_COMPONENT}
         </div>

@@ -125,10 +125,10 @@ export default function RidersPage() {
                 </div>
 
                 <div className='overview-grid-item'>
-                    <span className='overview-grid-item-text text-color'>REGISTERED CUSTOMERS/RIDERS</span>
+                    <span className='overview-grid-item-text text-color'>REGISTERED RIDERS</span>
                     <div className='overview-grid-item-desc'>
                         <h4 className='text-color overview-grid-item-desc-text-1 text-color'>{updates?.totalUsers}</h4>
-                        <span className='overview-grid-item-desc-text-2text-color'>+7.5%<FaArrowUpLong size={10} /> </span>
+                        <span className='overview-grid-item-desc-text-2text-color hide'>+7.5%<FaArrowUpLong size={10} /> </span>
                     </div>
 
                 </div>

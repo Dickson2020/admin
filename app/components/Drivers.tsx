@@ -147,7 +147,7 @@ export default function DriversPage( prop : propsType) {
                 <div className='overview-grid-item'>
                     <span className='text-color overview-grid-item-text'>ACTIVE DRIVERS</span>
                     <div className='overview-grid-item-desc'>
-                        <h4 className='text-color overview-grid-item-desc-text-1'>${updates?.availableRides}</h4>
+                        <h4 className='text-color overview-grid-item-desc-text-1'>{updates?.availableRides}</h4>
                         <span className='text-color overview-grid-item-desc-text-2 hide'>+20.5%<FaArrowUpLong size={10} /> </span>
                     </div>
 
@@ -178,7 +178,7 @@ unverifiedDrivers.length > 0?    unverifiedDrivers.map((value : driverDetails,in
                        
                        <div key={index} className='top-driver-item' onClick={()=> prop.showDriverDetails(value.id, value)}>
                             <div>
-                            <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='top-driver-pic' />
+                            <img src='https://th.bing.com/th/id/OIP.Q6UzOWk9FXLJoQN8o5yl5gAAAA?rs=1&pid=ImgDetMain' className='top-driver-pic' />
                             </div>
                             <div>
                                 <p className='text-color top-driver-item-name'>{value.name}</p>
@@ -223,7 +223,7 @@ verifiedDrivers.length > 0?  verifiedDrivers.map((value : driverDetails,index : 
                        
                        <div key={index} className='top-driver-item' onClick={()=> prop.showDriverDetails(value.id, value)}>
                             <div>
-                            <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='top-driver-pic' />
+                            <img src='https://th.bing.com/th/id/OIP.Q6UzOWk9FXLJoQN8o5yl5gAAAA?rs=1&pid=ImgDetMain' className='top-driver-pic' />
                             </div>
                             <div>
                                 <p className='text-color top-driver-item-name'>{value.name}</p>
@@ -270,7 +270,7 @@ rankedDrivers.length > 0?   rankedDrivers.map((value : driverDetails,index : num
                        
                        <div key={index} className='top-driver-item' onClick={()=> prop.showDriverDetails(value.id, value)}>
                             <div>
-                            <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='top-driver-pic' />
+                            <img src='https://th.bing.com/th/id/OIP.Q6UzOWk9FXLJoQN8o5yl5gAAAA?rs=1&pid=ImgDetMain' className='top-driver-pic' />
                             </div>
                             <div>
                                 <p className='text-color top-driver-item-name'>{value.name}</p>

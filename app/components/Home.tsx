@@ -187,7 +187,7 @@ export default function DashboardHome( prop : propsType) {
                     <span className='text-color overview-grid-item-text'>BOOKED RIDES</span>
                     <div className='overview-grid-item-desc'>
                         <h4 className='text-color text-color overview-grid-item-desc-text-1'>{updates?.bookedRides}</h4>
-                        <span className='text-color overview-grid-item-desc-text-2'>+0.5%<FaArrowUpLong size={10} /> </span>
+                        <span className='text-color overview-grid-item-desc-text-2 hide'>+0.5%<FaArrowUpLong size={10} /> </span>
                     </div>
 
                 </div>
@@ -196,7 +196,7 @@ export default function DashboardHome( prop : propsType) {
                     <span className='text-color overview-grid-item-text'>CANCELLED RIDES</span>
                     <div className='overview-grid-item-desc'>
                         <h4 className='text-color text-color overview-grid-item-desc-text-1'>{updates?.cancelledRides}</h4>
-                        <span className='text-color overview-grid-item-desc-text-2 danger-text hide'>-10.5%<FaArrowDownLong size={10} /> </span>
+                        <span className='text-color overview-grid-item-desc-text-2 danger-text'>-10.5%<FaArrowDownLong size={10} /> </span>
                     </div>
 
                 </div>
@@ -330,7 +330,7 @@ rankedDrivers.length > 0?   rankedDrivers.map((value : driverDetails,index : num
                        
                        <div key={index} className='top-driver-item' onClick={()=> prop.showDriverDetails(value.id, value)}>
                             <div>
-                            <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='top-driver-pic' />
+                            <img src='https://th.bing.com/th/id/OIP.Q6UzOWk9FXLJoQN8o5yl5gAAAA?rs=1&pid=ImgDetMain' className='top-driver-pic' />
                             </div>
                             <div>
                                 <p className='text-color top-driver-item-name'>{value.name}</p>

@@ -10,7 +10,8 @@ import { MdSupervisorAccount, MdOutlineSupervisorAccount  } from "react-icons/md
 import './nav.css'
 
 interface propsType{
-    navOnPress: (navMenuName : string)=> void
+    navOnPress: (navMenuName : string)=> void,
+    logout: ()=> void
 }
 export default function Navigation(prop : propsType){
     const [menuOpen, setMenuOpen] = useState('dashboard')
@@ -60,7 +61,7 @@ export default function Navigation(prop : propsType){
           <div>
 
           <div className='nav-items'>
-             <div className='nav-item' >
+             <div className='nav-item' onClick={()=> props.logout()}>
                <div className='nav-item-icon'> <IoMdLogOut /></div>
                 <p className='nav-itme-text'>Logout</p>
               

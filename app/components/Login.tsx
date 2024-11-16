@@ -54,6 +54,20 @@ export default function LoginForm( props : propsType ) {
 
         })
     }
+
+    
+  const getLoginSession = ()=>{
+    const session =  localStorage.getItem('session')
+    if(session !== null){
+     
+     setIsLoading(true)
+    }
+   }
+
+   useEffect(()=>{
+    getLoginSession()
+   },[])
+
     return (
         <div className="login-container">
 

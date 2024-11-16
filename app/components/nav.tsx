@@ -61,7 +61,7 @@ export default function Navigation(prop : propsType){
           <div>
 
           <div className='nav-items'>
-             <div className='nav-item' onClick={()=> props.logout()}>
+             <div className='nav-item' onClick={()=> prop.logout()}>
                <div className='nav-item-icon'> <IoMdLogOut /></div>
                 <p className='nav-itme-text'>Logout</p>
               

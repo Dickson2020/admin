@@ -232,7 +232,7 @@ export default function Home() {
   }
 
   const setLoginSession = ( id : number)=>{
-     localStorage.setItem('session', id)
+     localStorage.setItem('session', id +'')
   }
 
   const getLoginSession = ()=>{

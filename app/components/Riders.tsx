@@ -7,6 +7,19 @@ import { BarChart, Bar, Rectangle, Legend } from 'recharts';
 import ANALYTICS from './analytics';
 import BASEURL from '../url';
 
+interface objProps{
+    status: boolean, 
+    bookedRides: number,
+    totalEarnings: number,
+    cancelledRides: number,
+    availableRides:number
+    totalTodayPickup: number,
+    totalPickupPayment: number,
+    totalUsers: number,
+    totalTransactions: number,
+    ongoingRides: number
+  }
+  
 export default function RidersPage() {
 
      const [analyticsData, setAnalyticsData] = useState(ANALYTICS().daysAnalytics)
@@ -60,7 +73,7 @@ export default function RidersPage() {
         }
      },[chooseAnalyticsView])
 
-     const [updates, setUpdates] = useState<any>()
+     const [updates, setUpdates] = useState<objProps>()
      const fetchUpdates = () =>{
        
 
@@ -82,8 +95,7 @@ export default function RidersPage() {
             }
 
         }).catch((err)=>{
-           
-
+           console.log(err.message)
         })
     }
 

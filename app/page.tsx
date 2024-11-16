@@ -27,7 +27,25 @@ import formatAmount from './money-format'
 
 
 
-
+interface driverDetails{
+  id: number,
+  name:string,
+  email:string,
+  phone:string,
+  password:string,
+  rating:string,
+  years_of_experience: string,
+  verified:string,
+  latitude: string,
+  longitude: string,
+  active_status: string,
+  location:string,
+  customers: string,
+  about: string,
+  country: string,
+  account_balance: string,
+  organisation: string,
+}
 
 
 interface featurePropType {
@@ -154,8 +172,8 @@ export default function Home() {
     hideReceiptDetails()
   }
 
-  const [driverInfo,setDriverInfo] = useState<any>()
-  const showDriverDetails = (id: number, data : any) => {
+  const [driverInfo,setDriverInfo] = useState<driverDetails>()
+  const showDriverDetails = (id: number, data: driverDetails) => {
     const ID_ = id
     console.log(ID_)
    // alert(JSON.stringify(data))
@@ -213,7 +231,7 @@ export default function Home() {
     
   }
 
-  const setLoginSession = ( id : any)=>{
+  const setLoginSession = ( id : number)=>{
      localStorage.setItem('session', id)
   }
 
@@ -224,7 +242,7 @@ export default function Home() {
    }
   }
 
-  const onLoginSuccess =(id : any) =>{
+  const onLoginSuccess =(id : number) =>{
     setLoginSession(id)
     getLoginSession()
   }

@@ -63,10 +63,10 @@ export default function LoginForm( props : propsType ) {
 
                           {isError && <p className='error-message'>{errorMessage}</p>}                
 
-                <input type='email' onChange={(event : any) => setEmail(event.target.value)} className='form-input' placeholder='Enter business email'/>
+                <input type='email' onChange={(event) => setEmail(event.target.value)} className='form-input' placeholder='Enter business email'/>
 
                 <div className='input-group form-input2'>
-                <input onChange={(event : any) => setPassword(event.target.value)} type={passwordVisible ? 'password' : 'text'} className='form-input-x' placeholder='Enter password'/>
+                <input onChange={(event) => setPassword(event.target.value)} type={passwordVisible ? 'password' : 'text'} className='form-input-x' placeholder='Enter password'/>
                 <button onClick={()=> setPasswordVisible(!passwordVisible)} className='btn-transparent'>
                     
                     {

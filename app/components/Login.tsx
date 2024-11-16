@@ -40,7 +40,7 @@ export default function LoginForm( props : propsType ) {
             setIsLoading(false)
 
             if(result.status){
-                alert('login successful: '+result.data.id)
+                //alert('login successful: '+result.data.id)
                 props.success(result.data.id)
             }else{
                 setIsError(true)

@@ -85,7 +85,7 @@ export default function RidersPage() {
             }
         }).then((res)=> res.json()).then((result)=>{
            
-            alert(JSON.stringify(result))
+            //alert(JSON.stringify(result))
             if(result.status){
                 setUpdates(result)
                 

@@ -122,7 +122,7 @@ export default function DashboardHome( prop : propsType) {
         }).then((res)=> res.json()).then((result)=>{
             setIsError(false)
             setIsLoading(false)
-            alert(JSON.stringify(result))
+            //alert(JSON.stringify(result))
             if(result.status){
                 setUpdates(result)
                 
@@ -157,7 +157,7 @@ export default function DashboardHome( prop : propsType) {
          }).then((res)=> res.json()).then((result)=>{
              setIsError(false)
              setIsLoading(false)
-             //alert(JSON.stringify(result))
+             ////alert(JSON.stringify(result))
              fetchUpdates()
              if(result.status){
               

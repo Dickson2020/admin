@@ -176,9 +176,9 @@ export default function Home() {
   const showDriverDetails = (id: number, data: driverDetails) => {
     const ID_ = id
     console.log(ID_)
-   // alert(JSON.stringify(data))
+   // //alert(JSON.stringify(data))
     setDriverInfo(data)
-   // alert('driver details')
+   // //alert('driver details')
     setDRIVER_DETAILS(true)
     hideDriverVerificationDetails()
     hideReceiptDetails()

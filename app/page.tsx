@@ -7,7 +7,6 @@ import { TbNavigationFilled } from 'react-icons/tb';
 import { BiSearch } from 'react-icons/bi';
 import DashboardHome from './components/Home';
 import { GoBell, GoBellFill } from 'react-icons/go';
-import { BsEnvelopeAt, BsEnvelopeAtFill } from 'react-icons/bs';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { RiSendPlaneLine } from 'react-icons/ri';
 import { GrAttachment } from 'react-icons/gr';

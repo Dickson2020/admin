@@ -177,7 +177,7 @@ export default function DashboardHome( prop : propsType) {
  
      useEffect(()=>{
          fetchDrivers()
-         fetchUpdates
+         fetchUpdates()
      },[])
 
     return (

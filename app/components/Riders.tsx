@@ -5,6 +5,7 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { BarChart, Bar, Rectangle, Legend } from 'recharts';
 
 import ANALYTICS from './analytics';
+import BASEURL from '../url';
 
 export default function RidersPage() {
 
@@ -59,42 +60,72 @@ export default function RidersPage() {
         }
      },[chooseAnalyticsView])
 
+     const [updates, setUpdates] = useState<any>()
+     const fetchUpdates = () =>{
+       
+
+        fetch(BASEURL + '/admin/fetch-updates',{
+            method: 'POST',
+            body: JSON.stringify({}),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }).then((res)=> res.json()).then((result)=>{
+           
+            alert(JSON.stringify(result))
+            if(result.status){
+                setUpdates(result)
+                
+            }else{
+               
+               
+            }
+
+        }).catch((err)=>{
+           
+
+        })
+    }
+
+    useEffect(()=>{
+        fetchUpdates()
+    },[])
 
     return (
         <div className='dashboard-home-container'>
             <div className='grid-overview'>
                 <div className='overview-grid-item'>
-                    <span className='overview-grid-item-text'>ONGOING RIDES</span>
+                    <span className='overview-grid-item-text text-color'>ONGOING RIDES</span>
                     <div className='overview-grid-item-desc'>
-                        <h4 className='overview-grid-item-desc-text-1'>16</h4>
-                        <span className='overview-grid-item-desc-text-2'>+36.5%<FaArrowUpLong size={10} /> </span>
+                        <h4 className='text-color overview-grid-item-desc-text-1 text-color'>{updates?.ongoingRides}</h4>
+                        <span className='overview-grid-item-desc-text-2 text-color hide'>+36.5%<FaArrowUpLong size={10} /> </span>
                     </div>
 
                 </div>
 
                 <div className='overview-grid-item'>
-                    <span className='overview-grid-item-text'>CANCELLED RIDES</span>
+                    <span className='overview-grid-item-text text-color'>CANCELLED RIDES</span>
                     <div className='overview-grid-item-desc'>
-                        <h4 className='overview-grid-item-desc-text-1'>27</h4>
-                        <span className='overview-grid-item-desc-text-2 danger-text'>-10.5%<FaArrowDownLong size={10} /> </span>
+                        <h4 className='text-color overview-grid-item-desc-text-1 text-color'>{updates?.cancelledRides}</h4>
+                        <span className='overview-grid-item-desc-text-2 danger-text text-color hide'>-10.5%<FaArrowDownLong size={10} /> </span>
                     </div>
 
                 </div>
 
                 <div className='overview-grid-item'>
-                    <span className='overview-grid-item-text'>REGISTERED RIDERS</span>
+                    <span className='overview-grid-item-text text-color'>REGISTERED CUSTOMERS/RIDERS</span>
                     <div className='overview-grid-item-desc'>
-                        <h4 className='overview-grid-item-desc-text-1'>49,006</h4>
-                        <span className='overview-grid-item-desc-text-2'>+20.5%<FaArrowUpLong size={10} /> </span>
+                        <h4 className='text-color overview-grid-item-desc-text-1 text-color'>{updates?.totalUsers}</h4>
+                        <span className='overview-grid-item-desc-text-2text-color'>+7.5%<FaArrowUpLong size={10} /> </span>
                     </div>
 
                 </div>
 
                 <div className='overview-grid-item'>
-                    <span className='overview-grid-item-text'>TOTAL TRANSACTIONS</span>
+                    <span className='overview-grid-item-text text-color'>TOTAL TRANSACTIONS</span>
                     <div className='overview-grid-item-desc'>
-                        <h4 className='overview-grid-item-desc-text-1'>$33,493</h4>
-                        <span className='overview-grid-item-desc-text-2'>+36.5%<FaArrowUpLong size={10} /> </span>
+                        <h4 className='text-color overview-grid-item-desc-text-1 '>{updates?.totalTransactions}</h4>
+                        <span className='overview-grid-item-desc-text-2 text-color hide'>+36.5%<FaArrowUpLong size={10} /> </span>
                     </div>
 
                 </div>
@@ -104,24 +135,24 @@ export default function RidersPage() {
                 <div className='graph-area'>
                     <div className='graph-top-area'>
                     <div className='graph-top-area-section-1'>
-                    <span className='graph-top-area-title'>Active Riders By Time</span>
+                    <span className='graph-top-area-title text-color'>Active Riders By Time</span>
 
                     </div>
 
                     <div className='graph-top-area-section-2'>
-                        <div onClick={()=>setChooseAnalyticsView('days')} className={chooseAnalyticsView == 'days'? 'graph-top-area-section-2-item active-graph-control' : 'graph-top-area-section-2-item'}>
+                        <div onClick={()=>setChooseAnalyticsView('days')} className={chooseAnalyticsView == 'days'? 'text-color graph-top-area-section-2-item active-graph-control' : 'text-color graph-top-area-section-2-item'}>
                             Today
                         </div>
 
-                        <div onClick={()=>setChooseAnalyticsView('yesterday')} className={chooseAnalyticsView == 'yesterday'? 'graph-top-area-section-2-item active-graph-control' : 'graph-top-area-section-2-item'}>
+                        <div onClick={()=>setChooseAnalyticsView('yesterday')} className={chooseAnalyticsView == 'yesterday'? 'text-color graph-top-area-section-2-item active-graph-control' : 'text-color graph-top-area-section-2-item'}>
                             Yesterday
                         </div>
 
-                        <div onClick={()=>setChooseAnalyticsView('weekly')} className={chooseAnalyticsView == 'weekly'? 'graph-top-area-section-2-item active-graph-control' : 'graph-top-area-section-2-item'}>
+                        <div onClick={()=>setChooseAnalyticsView('weekly')} className={chooseAnalyticsView == 'weekly'? 'text-color graph-top-area-section-2-item active-graph-control' : 'text-color graph-top-area-section-2-item'}>
                             7days
                         </div>
 
-                        <div onClick={()=>setChooseAnalyticsView('monthly')} className={chooseAnalyticsView == 'monthly'? 'graph-top-area-section-2-item active-graph-control' : 'graph-top-area-section-2-item'}>
+                        <div onClick={()=>setChooseAnalyticsView('monthly')} className={chooseAnalyticsView == 'monthly'? 'text-color graph-top-area-section-2-item active-graph-control' : 'text-color graph-top-area-section-2-item'}>
                             30days
                         </div>
                     </div>
@@ -154,7 +185,7 @@ export default function RidersPage() {
 
                 <div className='visits-activity'>
                     <div className='top-visits-activity'>
-                        <span className='top-visits-activity-title'>Transaction Overview</span>
+                        <span className='top-visits-activity-title text-color'>Transaction Overview</span>
                     </div>
 
                     <div className='analytics-dom'>

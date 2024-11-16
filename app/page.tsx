@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import './styles/index.css'
 import Navigation from './components/nav';
+import './components/login.css';
 import { TbNavigationFilled } from 'react-icons/tb';
 import { BiSearch } from 'react-icons/bi';
 import DashboardHome from './components/Home';
@@ -20,7 +21,8 @@ import { TbHistoryToggle } from "react-icons/tb";
 import DriversPage from './components/Drivers';
 import RidersPage from './components/Riders';
 import TransactionsPage from './components/Transactions';
-
+import LoginForm from './components/Login';
+import formatAmount from './money-format'
 
 
 
@@ -152,9 +154,13 @@ export default function Home() {
     hideReceiptDetails()
   }
 
-  const showDriverDetails = (id: number) => {
+  const [driverInfo,setDriverInfo] = useState<any>()
+  const showDriverDetails = (id: number, data : any) => {
     const ID_ = id
     console.log(ID_)
+   // alert(JSON.stringify(data))
+    setDriverInfo(data)
+   // alert('driver details')
     setDRIVER_DETAILS(true)
     hideDriverVerificationDetails()
     hideReceiptDetails()
@@ -164,11 +170,7 @@ export default function Home() {
     setDRIVER_DETAILS(false)
     hideReceiptDetails()
   }
-  useEffect(() => {
-    const CONTAINER = document.getElementById('container') as HTMLDivElement
-    CONTAINER.style.width = `${window.innerWidth}px`
-    CONTAINER.style.height = `${window.innerHeight}px`
-  }, [])
+ 
 
   useEffect(() => {
     setNOTY_MODAL(false)
@@ -211,7 +213,29 @@ export default function Home() {
     
   }
 
+  const setLoginSession = ( id : any)=>{
+     localStorage.setItem('session', id)
+  }
+
+  const getLoginSession = ()=>{
+   const session =  localStorage.getItem('session')
+   if(session !== null){
+    setIsLogin(true)
+   }
+  }
+
+  const onLoginSuccess =(id : any) =>{
+    setLoginSession(id)
+    getLoginSession()
+  }
+  useEffect(()=>{
+   getLoginSession()
+  },[])
+
+  const [isLogin, setIsLogin] = useState(false)
+
   return (
+    isLogin?
     <div id='container' className='container' >
       <div className='container-header'>
         <div className='header-items-grid'>
@@ -233,9 +257,9 @@ export default function Home() {
             <div className='c-mt' onClick={() => setMESSAGES_MODAL(!MESSAGES_MODAL)}>
               {
                 MESSAGES_MODAL ?
-                  <BsEnvelopeAtFill size={19} className='noty-message-icon' />
+                  <BsEnvelopeAtFill size={19} color='#000' className='noty-message-icon' />
                   :
-                  <BsEnvelopeAt size={19} className='noty-message-icon' />
+                  <BsEnvelopeAt size={19} color='#000' className='noty-message-icon' />
 
               }
               <div className='noty-indicator'>2</div>
@@ -246,9 +270,9 @@ export default function Home() {
             <div className='c-mt' onClick={() => setNOTY_MODAL(!NOTY_MODAL)}>
               {
                 NOTY_MODAL ?
-                  <GoBellFill size={19} className='noty-message-icon' />
+                  <GoBellFill size={19} color='#000' className='noty-message-icon' />
                   :
-                  <GoBell size={19} className='noty-message-icon' />
+                  <GoBell size={19} color='#000' className='noty-message-icon' />
 
               }
               <div className='noty-indicator'>1</div>
@@ -265,13 +289,13 @@ export default function Home() {
           <div className={NOTY_MODAL ? 'popup' : 'popup hide-modal'}>
             <div className='popup-modal-content'>
               <div className='popup-modal-content-header'>
-                <p className='popup-modal-content-header-title'>Notifications</p>
+                <p className='text-color popup-modal-content-header-title'>Notifications</p>
               </div>
               <div className='popup-modal-content-body'>
                 <div className='popup-modal-content-body-item'>
                   <div>
-                    <p className='popup-modal-content-body-item-name'>Payment Method Alert</p>
-                    <p className='popup-modal-content-body-item-email'>Yasser added a VISA payment card</p>
+                    <p className='text-color popup-modal-content-body-item-name'>Payment Method Alert</p>
+                    <p className='text-color popup-modal-content-body-item-email'>Yasser added a VISA payment card</p>
                   </div>
                 </div>
 
@@ -286,34 +310,34 @@ export default function Home() {
 
             <div className='popup-modal-content'>
               <div className='popup-modal-content-header'>
-                <p className='popup-modal-content-header-title'>Messages</p>
+                <p className='text-color popup-modal-content-header-title'>Messages</p>
               </div>
               <div className='popup-modal-content-body'>
                 <div className='popup-modal-content-body-item' onClick={() => setREPLY_MESSAGE('Morris Willaim')}>
                   <div>
-                    <p className='popup-modal-content-body-item-name'>Morris Willaim</p>
-                    <p className='popup-modal-content-body-item-email'>Hi, i need a liecen...</p>
+                    <p className='text-color popup-modal-content-body-item-name'>Morris Willaim</p>
+                    <p className='text-color popup-modal-content-body-item-email'>Hi, i need a liecen...</p>
                   </div>
                 </div>
 
                 <div className='popup-modal-content-body-item' onClick={() => setREPLY_MESSAGE('Albert Clitch')}>
                   <div>
-                    <p className='popup-modal-content-body-item-name'>Albert Clitch</p>
-                    <p className='popup-modal-content-body-item-email'>I have an issue with my acc..</p>
+                    <p className='text-color popup-modal-content-body-item-name'>Albert Clitch</p>
+                    <p className='text-color popup-modal-content-body-item-email'>I have an issue with my acc..</p>
                   </div>
                 </div>
 
                 <div className='popup-modal-content-body-item' onClick={() => setREPLY_MESSAGE('Kamala Rose')}>
                   <div>
-                    <p className='popup-modal-content-body-item-name'>Kamala Rose</p>
-                    <p className='popup-modal-content-body-item-email'>What is the shortes route to NYC</p>
+                    <p className='text-color popup-modal-content-body-item-name'>Kamala Rose</p>
+                    <p className='text-color popup-modal-content-body-item-email'>What is the shortes route to NYC</p>
                   </div>
                 </div>
 
                 <div className='popup-modal-content-body-item' onClick={() => setREPLY_MESSAGE('Emma Clark')}>
                   <div>
-                    <p className='popup-modal-content-body-item-name'>Emma Clark</p>
-                    <p className='popup-modal-content-body-item-email'>Do i need a passport to drive?</p>
+                    <p className='text-color popup-modal-content-body-item-name'>Emma Clark</p>
+                    <p className='text-color popup-modal-content-body-item-email'>Do i need a passport to drive?</p>
                   </div>
                 </div>
               </div>
@@ -326,16 +350,16 @@ export default function Home() {
               <div className='close-reply-messages-modal' onClick={() => setREPLY_MESSAGES(false)}>
                 <IoMdCloseCircleOutline />
               </div>
-              <p className='popup-modal-content-header-title'>{REPLY_CHAT_NAME}</p>
+              <p className='text-color popup-modal-content-header-title'>{REPLY_CHAT_NAME}</p>
             </div>
             <div className='popup-modal-content-body chat-content'>
 
               <div className='messages-scrollview'>
-                <div className='sender-bubble'>
+                <div className='sender-bubble text-color'>
                   Hi, how may we help you today?
                 </div>
 
-                <div className='receiver-bubble'>
+                <div className='receiver-bubble text-color'>
                   I have an issue registering on the App
                 </div>
               </div>
@@ -343,7 +367,7 @@ export default function Home() {
               <div className='chat-footer'>
 
                 <div className='c-item'>
-                  <GrAttachment />
+                  <GrAttachment color='#000' />
                 </div>
 
                 <div className='c-item'>
@@ -352,7 +376,7 @@ export default function Home() {
 
 
                 <div className='c-item'>
-                  <RiSendPlaneLine />
+                  <RiSendPlaneLine color='#000'/>
                 </div>
               </div>
             </div>
@@ -361,9 +385,9 @@ export default function Home() {
           <div className={DRIVER_DETAILS ? 'popup-bio-info' : 'popup-bio-info hide-modal'}>
             <div className='popup-modal-content-header grid-header'>
               <div className='close-reply-messages-modal' onClick={() => setDRIVER_DETAILS(false)}>
-                <IoMdCloseCircleOutline />
+                <IoMdCloseCircleOutline color='#000'/>
               </div>
-              <p className='popup-modal-content-header-title'>Driver Details</p>
+              <p className='text-color popup-modal-content-header-title'>Driver Details</p>
             </div>
             <div className='popup-modal-content-body'>
               <div className='profile-bio-section'>
@@ -372,9 +396,9 @@ export default function Home() {
                   <MdVerified className='verified-driver-details' />
                 </div>
                 <div>
-                  <p className='profile-bio-section-name'>Morrisa R. Williams</p>
-                  <p className='profile-bio-section-email'>morriswilliams@gmail.com</p>
-                  <p className='profile-bio-section-address'><FaLocationDot />New York, United States</p>
+                  <p className='text-color profile-bio-section-name'>{driverInfo?.name}</p>
+                  <p className='text-color profile-bio-section-email'>{driverInfo?.email}</p>
+                  <p className='text-color profile-bio-section-address'><FaLocationDot />{driverInfo?.location}, {driverInfo?.country}</p>
 
                 </div>
               </div>
@@ -382,67 +406,64 @@ export default function Home() {
               <div className='ranking-section'>
                 <div className='rank-item'>
                   <div className='rank-item-icon c-item'>
-                    <MdSupervisorAccount size={20} />
+                    <MdSupervisorAccount color='#000' size={20} />
                   </div>
-                  <p className='rank-item-big-text'>7,500+</p>
-                  <p className='rank-item-small-text'>Customer</p>
+                  <p className='text-color rank-item-big-text'>{driverInfo?.customers}</p>
+                  <p className='text-color rank-item-small-text'>Customer</p>
                 </div>
 
 
 
                 <div className='rank-item'>
                   <div className='rank-item-icon c-item'>
-                    <FaGift size={17} />
+                    <FaGift color='#000' size={17} />
                   </div>
-                  <p className='rank-item-big-text'>10+</p>
-                  <p className='rank-item-small-text'>Years Exp.</p>
+                  <p className='text-color rank-item-big-text'>{driverInfo?.years_of_experience}</p>
+                  <p className='text-color rank-item-small-text'>Years Exp.</p>
                 </div>
 
 
 
                 <div className='rank-item'>
                   <div className='rank-item-icon c-item'>
-                    <FaStar size={17} />
+                    <FaStar color='#000' size={17} />
                   </div>
-                  <p className='rank-item-big-text'>4.0+</p>
-                  <p className='rank-item-small-text'>Rating</p>
+                  <p className='text-color rank-item-big-text'>{driverInfo?.rating}</p>
+                  <p className='text-color rank-item-small-text'>Rating</p>
                 </div>
 
                 <div className='rank-item'>
                   <div className='rank-item-icon c-item'>
-                    <RiMessage2Fill size={17} />
+                    <RiMessage2Fill color='#000' size={17} />
                   </div>
-                  <p className='rank-item-big-text'>4,956</p>
-                  <p className='rank-item-small-text'>Review</p>
+                  <p className='text-color rank-item-big-text'>0</p>
+                  <p className='text-color rank-item-small-text'>Review</p>
                 </div>
               </div>
 
               <div className='about-section'>
-                <p className='about-section-title'>About</p>
-                <p className='about-section-desc'>I have been driving for over a decade now, and i know how to navigate well onthe highway </p>
+                <p className='text-color about-section-title'>About</p>
+                <p className='text-color about-section-desc'>{driverInfo?.about}</p>
               </div>
 
 
               <div className='contact-section'>
-                <p className='contact-section-title'>Driver Infomations</p>
+                <p className='text-color contact-section-title'>Driver Infomations</p>
                 <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Driver Contact</p>
-                  <p className='contact-section-detail-small-text'>+1 234 458 5</p>
+                  <p className='text-color contact-section-detail-big-text'>Driver Contact</p>
+                  <p className='text-color contact-section-detail-small-text'>{driverInfo?.phone}</p>
                 </div>
                 <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Car Model</p>
-                  <p className='contact-section-detail-small-text'>Hyundai Verna</p>
-                </div>
-
-                <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Car Number</p>
-                  <p className='contact-section-detail-small-text'>GR 678 UVWX</p>
+                  <p className='text-color contact-section-detail-big-text'>Verified KYC</p>
+                  <p className='text-color contact-section-detail-small-text'>{Number(driverInfo?.verified) == 1? 'Completed' : 'Not verified'}</p>
                 </div>
 
                 <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Car Color</p>
-                  <p className='contact-section-detail-small-text'>White</p>
+                  <p className='text-color contact-section-detail-big-text'>Wallet Balance</p>
+                  <p className='text-color contact-section-detail-small-text'>${formatAmount(driverInfo?.account_balance)}</p>
                 </div>
+
+               
 
               </div>
 
@@ -454,35 +475,36 @@ export default function Home() {
               <div className='close-reply-messages-modal' onClick={() => setRECEIPT_DETAILS(false)}>
                 <IoMdCloseCircleOutline />
               </div>
-              <p className='popup-modal-content-header-title'>Receipt</p>
+              <p className='text-color popup-modal-content-header-title'>Receipt</p>
             </div>
             <div className='popup-modal-content-body'>
                 
                 <div>
-                  <p className='profile-bio-section-name'>VISA CARD DEPOSIT</p>
-                  <p className='profile-bio-section-email'>09:23pm, 10 October, 2024</p>
+                  <p className='text-color profile-bio-section-name'>VISA CARD DEPOSIT</p>
+                  <p className='text-color profile-bio-section-email'>09:23pm, 10 October, 2024</p>
                 
               </div>
 
 
               <div className='contact-section'>
                 <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Transaction ID</p>
-                  <p className='contact-section-detail-small-text'>9855678765456776567</p>
+                  <p className='text-color contact-section-detail-big-text'>Transaction ID</p>
+                  <p className='text-color contact-section-detail-small-text'>9855678765456776567</p>
                 </div>
+               
                 <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Transaction Type</p>
-                  <p className='contact-section-detail-small-text'>CARD PAYMENT</p>
-                </div>
-
-                <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Transaction Time</p>
-                  <p className='contact-section-detail-small-text'>09:23pm, 10 October, 2024</p>
+                  <p className='text-color contact-section-detail-big-text'>Transaction Type</p>
+                  <p className='text-color contact-section-detail-small-text'>CARD PAYMENT</p>
                 </div>
 
                 <div className='contact-section-detail'>
-                  <p className='contact-section-detail-big-text'>Amount Paid</p>
-                  <p className='contact-section-detail-small-text'>$100,000</p>
+                  <p className='text-color contact-section-detail-big-text'>Transaction Time</p>
+                  <p className='text-color contact-section-detail-small-text'>09:23pm, 10 October, 2024</p>
+                </div>
+
+                <div className='contact-section-detail'>
+                  <p className='text-color contact-section-detail-big-text'>Amount Paid</p>
+                  <p className='text-color contact-section-detail-small-text'>$100,000</p>
                 </div>
 
               </div>
@@ -498,7 +520,7 @@ export default function Home() {
               <div className='close-reply-messages-modal' onClick={() => setDRIVER_VERIFICATION_DETAILS(false)}>
                 <IoMdCloseCircleOutline />
               </div>
-              <p className='popup-modal-content-header-title'>Driver Verification</p>
+              <p className='text-color popup-modal-content-header-title'>Driver Verification</p>
             </div>
             <div className='popup-modal-content-body'>
               <div className='profile-bio-section'>
@@ -506,9 +528,9 @@ export default function Home() {
                   <img src='https://media.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F1257287%2F307e3f5d-e99f-4b8f-bc61-55f475e28311.jpeg' className='profile-bio-section-img' />
                 </div>
                 <div>
-                  <p className='profile-bio-section-name'>Morrisa R. Williams</p>
-                  <p className='profile-bio-section-email'>morriswilliams@gmail.com</p>
-                  <p className='profile-bio-section-address'><FaLocationDot />New York, United States</p>
+                  <p className='text-color profile-bio-section-name'>Morrisa R. Williams</p>
+                  <p className='text-color profile-bio-section-email'>morriswilliams@gmail.com</p>
+                  <p className='text-color profile-bio-section-address'><FaLocationDot />New York, United States</p>
 
                 </div>
               </div>
@@ -516,17 +538,17 @@ export default function Home() {
             
 
               <div className='about-section'>
-                <p className='about-section-title'>About</p>
-                <p className='about-section-desc'>I have been driving for over a decade now, and i know how to navigate well onthe highway </p>
+                <p className='text-color about-section-title'>About</p>
+                <p className='text-color about-section-desc'>I have been driving for over a decade now, and i know how to navigate well onthe highway </p>
               </div>
 
 
 
               <div className='about-section'>
-                <p className='about-section-title'>Drivers Licence</p>
+                <p className='text-color about-section-title'>Drivers Licence</p>
                 <div className='kyc-doc-scroll-horizontal'>
                   <div className='kyc-card'>
-                    <p>Document Here</p>
+                    <p className='text-color text-color'>Document Here</p>
                   </div>
 
                  
@@ -548,7 +570,7 @@ export default function Home() {
                 <div className='close-reply-messages-modal' onClick={() => setSEARCHING_MODAL(false)}>
                   <IoMdCloseCircleOutline />
                 </div>
-                <p className='popup-modal-content-header-title'>Searching {SEARCH_PATTERN}</p>
+                <p className='text-color popup-modal-content-header-title'>Searching {SEARCH_PATTERN}</p>
               </div>
               <div className='popup-modal-content-body'>
 
@@ -563,11 +585,11 @@ export default function Home() {
                               <TbHistoryToggle />
                             </div>
                             <div>
-                              <p className='search-feature-item-name'>{value.title}</p>
-                              <p className='search-feature-item-desc'>{value.pattern}</p>
+                              <p className='text-color text-color search-feature-item-name'>{value.title}</p>
+                              <p className='text-color text-color search-feature-item-desc'>{value.pattern}</p>
                             </div>
                             <div>
-                              <span className='view-details-btn'>Goto</span>
+                              <span className='text-color view-details-btn'>Goto</span>
                             </div>
                           </div>
 
@@ -577,7 +599,7 @@ export default function Home() {
                     :
 
                     <div className='no-search-pattern'>
-                      <p className='no-search-pattern-text'>No search pattern found!</p>
+                      <p className='text-color no-search-pattern-text'>No search pattern found!</p>
                     </div>
                 }
 
@@ -598,5 +620,8 @@ export default function Home() {
         </div>
       </div>
     </div>
+
+    :
+    <LoginForm success={onLoginSuccess}/>
   );
 }

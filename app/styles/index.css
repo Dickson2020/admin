@@ -1,9 +1,9 @@
 .container {
     background: #f8f8f8;
     display: grid;
-    grid-template-rows: 0.13fr 1fr;
-    width: 1280px;
-    height: auto;
+    grid-template-rows: 0.2fr 1fr;
+    width: 100%;
+    height: 100%;
 
 }
 
@@ -95,11 +95,18 @@
 .header-action-icons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .c-mt {
-    padding-top: 5px;
+    padding-top: 0px;
     cursor: pointer;
+}
+
+.mt{
+    margin-top: 10%;
 }
 
 .noty-indicator {
@@ -211,6 +218,60 @@
     font-family: 'Inter-Bold';
     opacity: 0.7;
     font-size: 14px;
+    color:#000
+}
+
+.text-color{
+    color:#000
+}
+
+@keyframes loader {
+    0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(350deg);
+    }
+}
+.animated-loader{
+    animation: 1s loader linear infinite ;
+}
+
+
+.hide{
+    display: none;
+}
+
+.error-message{
+    font-family: 'Inter-Regular';
+    font-size: 10px;
+    margin-top: 9px;
+    color:rgb(255, 41, 41);
+    text-align: center;
+}
+
+.error-message2{
+    font-family: 'Inter-Regular';
+    font-size: 12px;
+    color: #000;
+    opacity: 0.8;
+    text-align: center;
+}
+
+
+.refresh-btn{
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+    border-radius: 10;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 20px;
+    margin-top: 10%;
 }
 
 .popup-modal-content-body-item {

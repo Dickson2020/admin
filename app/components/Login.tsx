@@ -6,7 +6,7 @@ import BASEURL from '../url'
 import { BiLoaderCircle } from 'react-icons/bi'
 
 interface propsType {
-    success: (id: string) => void
+    success: (id: number) => void
 }
 export default function LoginForm( props : propsType ) {
     const [passwordVisible, setPasswordVisible] = useState(false)

@@ -132,7 +132,8 @@ export default function DashboardHome( prop : propsType) {
             }
 
         }).catch((err)=>{
-           
+            console.log(err.message)
+
 
         })
     }

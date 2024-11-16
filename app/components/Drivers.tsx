@@ -77,8 +77,7 @@ export default function DriversPage( prop : propsType) {
             }
 
         }).catch((err)=>{
-           
-
+           console.log(err.message)
         })
     }
   
